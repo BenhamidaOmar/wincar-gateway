@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: gateway-service
+
+  cloud:
+    gateway:
+      routes:
+        - id: wincar-transverse-service
+          uri: http://localhost:8082/
+          predicates:
+            - Path=/collaborateurs/**
+
+        - id: wincar-sav-service
+          uri: http://localhost:8081/
+          predicates:
+            - Path=/ordresReparation/**
+
+server:
+  port: 8888
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
